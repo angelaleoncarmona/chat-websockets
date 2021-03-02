@@ -22,10 +22,35 @@
     <meta property="og:image:width" content="400">
     <meta property="og:image:height" content="300">
     <meta property="og:image:alt" content="">
+    <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" type="text/css" href="css/spectre.min.css">
+    <!-- JAVASCRIPT -->
+    <script src="js/vendors/vue.min.js"></script>
+    <script defer src="js/main.js"></script>
+
 </head>
 <body>
-
+    <div id="app">
+        <h1 class="text-center">WebSocket Chat</h1>
+        <input type="text" v-model="usuario" placeholder="Tu nombre">
+        <div class="container" style="max-width: 500px; margin: 0 auto">
+            <!-- MENSAJE -->
+            <div class="tile" v-for="mensaje in mensajes">
+                <div class="tile-content">
+                    <p class="tile-title" style="font-weight: bold">{{mensaje.usuario}}</p>
+                    <p class="tile-subtitle">
+                        {{ mensaje.mensaje }}
+                    </p>
+                </div>
+            </div>
+            <!-- ENVIAR MENSAJE -->
+            <div class="input-group">
+                <input v-model="nuevoMensaje" type="text" class="form-input" value="" placeholder="Nuevo Mensaje">
+                <button @click.prevent="enviarMensaje" class="btn btn-primary input-group-btn">Enviar</button>
+            </div>
+        </div>
+        </div>
+    </div>
 </body>
 </html>
